@@ -1,21 +1,15 @@
-/**
- * Hashify
- * Main Application Logic
- */
+const textInput =
+    document.getElementById("textInput");
 
+const generateBtn =
+    document.getElementById("generateBtn");
 
-/* ========================================
-   DOM Elements
-======================================== */
-
-const textInput = document.getElementById("textInput");
-
-const generateBtn = document.getElementById("generateBtn");
-
-const clearBtn = document.getElementById("clearBtn");
+const clearBtn =
+    document.getElementById("clearBtn");
 
 const characterCount =
     document.getElementById("characterCount");
+
 
 const sha1Result =
     document.getElementById("sha1Result");
@@ -30,13 +24,12 @@ const sha512Result =
     document.getElementById("sha512Result");
 
 
-/* ========================================
-   Character Counter
-======================================== */
+/* Character Counter */
 
 textInput.addEventListener("input", () => {
 
-    const count = textInput.value.length;
+    const count =
+        textInput.value.length;
 
     characterCount.textContent =
         `${count} ${count === 1 ? "character" : "characters"}`;
@@ -44,20 +37,17 @@ textInput.addEventListener("input", () => {
 });
 
 
-/* ========================================
-   Generate Hashes
-======================================== */
+/* Generate Hashes */
 
 generateBtn.addEventListener("click", async () => {
 
-    const text = textInput.value;
+    const text =
+        textInput.value;
 
 
-    if (!text.trim()) {
+    if (text.length === 0) {
 
-        alert("Please enter some text first.");
-
-        textInput.focus();
+        alert("Please enter some text.");
 
         return;
     }
@@ -65,45 +55,53 @@ generateBtn.addEventListener("click", async () => {
 
     generateBtn.disabled = true;
 
-    generateBtn.textContent = "Generating...";
+    generateBtn.textContent =
+        "Generating...";
 
 
     try {
 
-        const hashes = await generateAllHashes(text);
+        const hashes =
+            await generateAllHashes(text);
 
 
-        sha1Result.textContent = hashes.sha1;
+        sha1Result.textContent =
+            hashes.sha1;
 
-        sha256Result.textContent = hashes.sha256;
+        sha256Result.textContent =
+            hashes.sha256;
 
-        sha384Result.textContent = hashes.sha384;
+        sha384Result.textContent =
+            hashes.sha384;
 
-        sha512Result.textContent = hashes.sha512;
+        sha512Result.textContent =
+            hashes.sha512;
 
 
     } catch (error) {
 
-        console.error("Hash generation failed:", error);
+        console.error(
+            "Hashing failed:",
+            error
+        );
 
         alert(
-            `Hash generation failed: ${error.message}`
+            "Hashing failed. Check the browser console."
         );
 
     } finally {
 
         generateBtn.disabled = false;
 
-        generateBtn.textContent = "Generate Hashes";
+        generateBtn.textContent =
+            "Generate Hashes";
 
     }
 
 });
 
 
-/* ========================================
-   Clear
-======================================== */
+/* Clear */
 
 clearBtn.addEventListener("click", () => {
 
@@ -117,66 +115,7 @@ clearBtn.addEventListener("click", () => {
 
     sha512Result.textContent = "—";
 
-    characterCount.textContent = "0 characters";
-
-    textInput.focus();
-
-});
-
-
-/* ========================================
-   Copy Hash
-======================================== */
-
-document.addEventListener("click", async (event) => {
-
-    const button = event.target.closest(".copy-btn");
-
-
-    if (!button) {
-        return;
-    }
-
-
-    const targetId = button.dataset.target;
-
-    const target = document.getElementById(targetId);
-
-
-    if (!target) {
-        return;
-    }
-
-
-    const value = target.textContent.trim();
-
-
-    if (!value || value === "—") {
-        return;
-    }
-
-
-    try {
-
-        await navigator.clipboard.writeText(value);
-
-
-        const originalText = button.textContent;
-
-        button.textContent = "Copied!";
-
-
-        setTimeout(() => {
-
-            button.textContent = originalText;
-
-        }, 1200);
-
-
-    } catch (error) {
-
-        console.error("Copy failed:", error);
-
-    }
+    characterCount.textContent =
+        "0 characters";
 
 });
