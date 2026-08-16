@@ -1,0 +1,642 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+
+    --text: #0f172a;
+    --muted: #64748b;
+
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+
+    --code-bg: #f1f5f9;
+
+    --radius: 14px;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* ================================
+   Container
+================================ */
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+
+/* ================================
+   Header
+================================ */
+
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+
+.header-content {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+    color: white;
+
+    font-weight: 800;
+}
+
+
+.header-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+
+/* ================================
+   Main
+================================ */
+
+.main {
+    padding: 60px 0 80px;
+}
+
+
+/* ================================
+   Hero
+================================ */
+
+.hero {
+    text-align: center;
+
+    max-width: 720px;
+
+    margin: 0 auto 45px;
+}
+
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #c7d2fe;
+
+    border-radius: 999px;
+
+    background: #eef2ff;
+
+    color: var(--primary);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+
+    line-height: 1.1;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+
+.hero p {
+    color: var(--muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   Card
+================================ */
+
+.card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 28px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.04);
+}
+
+
+.card-header {
+    margin-bottom: 24px;
+}
+
+
+.card-header h2 {
+    font-size: 1.2rem;
+
+    margin-bottom: 6px;
+}
+
+
+.card-header p {
+    color: var(--muted);
+
+    font-size: 0.9rem;
+}
+
+
+/* ================================
+   Inputs
+================================ */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.input-group label {
+    font-size: 0.85rem;
+
+    font-weight: 700;
+}
+
+
+textarea,
+input[type="text"] {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: var(--text);
+
+    padding: 14px;
+
+    font: inherit;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+textarea {
+    resize: vertical;
+
+    min-height: 150px;
+}
+
+
+textarea:focus,
+input[type="text"]:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+
+/* ================================
+   Buttons
+================================ */
+
+.actions {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.btn {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 11px 18px;
+
+    font: inherit;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+
+.btn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ================================
+   Hash Results
+================================ */
+
+.hash-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.hash-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.hash-name {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+.hash-info code,
+.file-result code {
+    display: block;
+
+    overflow-x: auto;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    background: var(--code-bg);
+
+    color: #334155;
+
+    font-size: 0.8rem;
+
+    white-space: nowrap;
+}
+
+
+.copy-btn {
+    flex-shrink: 0;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: #475569;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.copy-btn:hover {
+    background: #f8fafc;
+}
+
+
+/* ================================
+   File Upload
+================================ */
+
+.file-upload input {
+    display: none;
+}
+
+
+.file-upload label {
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 2px dashed var(--border);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    color: var(--muted);
+
+    transition: 0.2s;
+}
+
+
+.file-upload label:hover {
+    border-color: var(--primary);
+
+    background: #f8faff;
+}
+
+
+.upload-icon {
+    font-size: 2rem;
+
+    color: var(--primary);
+}
+
+
+.file-upload strong {
+    color: var(--text);
+}
+
+
+.file-upload small {
+    font-size: 0.8rem;
+}
+
+
+.file-info {
+    display: flex;
+
+    gap: 40px;
+
+    margin: 20px 0;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: var(--code-bg);
+}
+
+
+.file-info span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 0.75rem;
+
+    margin-bottom: 4px;
+}
+
+
+.file-info strong {
+    font-size: 0.9rem;
+}
+
+
+.file-result {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+
+.file-result span {
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+.file-result code {
+    flex: 1;
+}
+
+
+/* ================================
+   Comparison
+================================ */
+
+.comparison-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+.comparison-result {
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* ================================
+   Utilities
+================================ */
+
+.hidden {
+    display: none;
+}
+
+
+/* ================================
+   Footer
+================================ */
+
+.footer {
+    border-top: 1px solid var(--border);
+
+    background: white;
+
+    padding: 25px 0;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+}
+
+
+.footer .container {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 700px) {
+
+    .header-label {
+        display: none;
+    }
+
+
+    .main {
+        padding: 40px 0 60px;
+    }
+
+
+    .card {
+        padding: 20px;
+    }
+
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .hash-item {
+        align-items: flex-start;
+    }
+
+
+    .file-result {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .footer .container {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+}
