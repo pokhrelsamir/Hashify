@@ -313,3 +313,100 @@ fileDropArea.addEventListener(
 
     }
 );
+
+/* ========================================
+   Hash Comparison
+======================================== */
+
+const hashOne =
+    document.getElementById("hashOne");
+
+const hashTwo =
+    document.getElementById("hashTwo");
+
+const compareBtn =
+    document.getElementById("compareBtn");
+
+const comparisonResult =
+    document.getElementById("comparisonResult");
+
+
+/* Compare Hashes */
+
+compareBtn.addEventListener(
+    "click",
+    () => {
+
+        const firstHash =
+            hashOne.value.trim();
+
+        const secondHash =
+            hashTwo.value.trim();
+
+
+        /* Empty Input */
+
+        if (!firstHash || !secondHash) {
+
+            comparisonResult.textContent =
+                "Please enter both hash values.";
+
+            comparisonResult.classList.remove(
+                "hidden"
+            );
+
+            comparisonResult.style.background =
+                "#fef2f2";
+
+            comparisonResult.style.color =
+                "#dc2626";
+
+            return;
+        }
+
+
+        /* Normalize */
+
+        const normalizedFirst =
+            firstHash.toLowerCase();
+
+        const normalizedSecond =
+            secondHash.toLowerCase();
+
+
+        /* Compare */
+
+        if (
+            normalizedFirst ===
+            normalizedSecond
+        ) {
+
+            comparisonResult.textContent =
+                "✓ Hashes Match";
+
+            comparisonResult.style.background =
+                "#f0fdf4";
+
+            comparisonResult.style.color =
+                "#16a34a";
+
+        } else {
+
+            comparisonResult.textContent =
+                "✕ Hashes Do Not Match";
+
+            comparisonResult.style.background =
+                "#fef2f2";
+
+            comparisonResult.style.color =
+                "#dc2626";
+
+        }
+
+
+        comparisonResult.classList.remove(
+            "hidden"
+        );
+
+    }
+);
