@@ -119,3 +119,121 @@ clearBtn.addEventListener("click", () => {
         "0 characters";
 
 });
+
+/* ========================================
+   File Hashing
+======================================== */
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const fileInfo =
+    document.getElementById("fileInfo");
+
+const fileName =
+    document.getElementById("fileName");
+
+const fileSize =
+    document.getElementById("fileSize");
+
+const fileHashBtn =
+    document.getElementById("fileHashBtn");
+
+const fileResult =
+    document.getElementById("fileResult");
+
+const fileHash =
+    document.getElementById("fileHash");
+
+
+let selectedFile = null;
+
+
+/* File Selected */
+
+fileInput.addEventListener("change", () => {
+
+    const file =
+        fileInput.files[0];
+
+
+    if (!file) {
+        return;
+    }
+
+
+    selectedFile = file;
+
+
+    fileName.textContent =
+        file.name;
+
+    fileSize.textContent =
+        formatFileSize(file.size);
+
+
+    fileInfo.classList.remove("hidden");
+
+    fileResult.classList.add("hidden");
+
+    fileHashBtn.disabled = false;
+
+});
+
+
+/* Generate File Hash */
+
+fileHashBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!selectedFile) {
+            return;
+        }
+
+
+        fileHashBtn.disabled = true;
+
+        fileHashBtn.textContent =
+            "Hashing...";
+
+
+        try {
+
+            const hash =
+                await generateFileHash(
+                    selectedFile
+                );
+
+
+            fileHash.textContent =
+                hash;
+
+
+            fileResult.classList.remove(
+                "hidden"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "File hashing failed:",
+                error
+            );
+
+            alert(
+                "Unable to hash the file."
+            );
+
+        } finally {
+
+            fileHashBtn.disabled = false;
+
+            fileHashBtn.textContent =
+                "Generate File Hash";
+
+        }
+
+    }
+);
