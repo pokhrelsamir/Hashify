@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HashBox — Hash Generator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">#</span>
+                <span>HashBox</span>
+            </a>
+
+            <span class="header-label">
+                Developer Security Tool
+            </span>
+
+        </div>
+    </header>
+
+
+    <!-- Main -->
+    <main class="main">
+
+        <div class="container">
+
+            <!-- Hero -->
+            <section class="hero">
+
+                <div class="hero-badge">
+                    🔐 Client-Side Hash Generator
+                </div>
+
+                <h1>
+                    Generate <span>Secure Hashes</span>
+                    Instantly
+                </h1>
+
+                <p>
+                    Generate cryptographic hashes from text or files
+                    directly in your browser.
+                </p>
+
+            </section>
+
+
+            <!-- Hash Generator -->
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Text Hash Generator</h2>
+
+                        <p>
+                            Enter text below to generate multiple
+                            hash values.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="textInput">
+                        Input Text
+                    </label>
+
+                    <textarea
+                        id="textInput"
+                        placeholder="Enter text to hash..."
+                        rows="6"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        id="generateBtn"
+                        class="btn btn-primary"
+                    >
+                        Generate Hashes
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="btn btn-secondary"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Hash Results -->
+            <section
+                class="card results-card"
+                id="resultsSection"
+            >
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Hash Results</h2>
+
+                        <p>
+                            Generated hash values.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="hash-list">
+
+                    <!-- SHA-256 -->
+                    <div class="hash-item">
+
+                        <div class="hash-info">
+
+                            <span class="hash-name">
+                                SHA-256
+                            </span>
+
+                            <code id="sha256Result">
+                                —
+                            </code>
+
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            data-target="sha256Result"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <!-- SHA-384 -->
+                    <div class="hash-item">
+
+                        <div class="hash-info">
+
+                            <span class="hash-name">
+                                SHA-384
+                            </span>
+
+                            <code id="sha384Result">
+                                —
+                            </code>
+
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            data-target="sha384Result"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <!-- SHA-512 -->
+                    <div class="hash-item">
+
+                        <div class="hash-info">
+
+                            <span class="hash-name">
+                                SHA-512
+                            </span>
+
+                            <code id="sha512Result">
+                                —
+                            </code>
+
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            data-target="sha512Result"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <!-- SHA-1 -->
+                    <div class="hash-item">
+
+                        <div class="hash-info">
+
+                            <span class="hash-name">
+                                SHA-1
+                            </span>
+
+                            <code id="sha1Result">
+                                —
+                            </code>
+
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            data-target="sha1Result"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- File Hashing -->
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>File Hash Generator</h2>
+
+                        <p>
+                            Generate hashes from a local file.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="file-upload">
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                    >
+
+                    <label for="fileInput">
+                        <span class="upload-icon">
+                            ↑
+                        </span>
+
+                        <strong>
+                            Choose a file
+                        </strong>
+
+                        <small>
+                            or drag and drop it here
+                        </small>
+                    </label>
+
+                </div>
+
+
+                <div
+                    id="fileInfo"
+                    class="file-info hidden"
+                >
+
+                    <div>
+                        <span>File</span>
+                        <strong id="fileName">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Size</span>
+                        <strong id="fileSize">—</strong>
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="fileHashBtn"
+                    class="btn btn-primary"
+                    disabled
+                >
+                    Generate File Hash
+                </button>
+
+
+                <div
+                    id="fileResult"
+                    class="file-result hidden"
+                >
+
+                    <span>SHA-256</span>
+
+                    <code id="fileHash">
+                        —
+                    </code>
+
+                    <button
+                        class="copy-btn"
+                        data-target="fileHash"
+                    >
+                        Copy
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Hash Comparison -->
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Hash Comparison</h2>
+
+                        <p>
+                            Compare two hash values.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="input-group">
+
+                        <label for="hashOne">
+                            Hash 1
+                        </label>
+
+                        <input
+                            type="text"
+                            id="hashOne"
+                            placeholder="Enter first hash..."
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="hashTwo">
+                            Hash 2
+                        </label>
+
+                        <input
+                            type="text"
+                            id="hashTwo"
+                            placeholder="Enter second hash..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="compareBtn"
+                    class="btn btn-primary"
+                >
+                    Compare Hashes
+                </button>
+
+
+                <div
+                    id="comparisonResult"
+                    class="comparison-result hidden"
+                ></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                HashBox © 2026
+            </p>
+
+            <span>
+                Client-side processing • Your data stays in your browser
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/hash.js"></script>
+    <script src="js/fileHash.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
