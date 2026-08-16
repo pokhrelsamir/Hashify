@@ -969,3 +969,15 @@ input[type="text"]:focus {
     }
 
 }
+
+/* ========================================
+   Drag & Drop State
+======================================== */
+
+.file-upload label.drag-active {
+    border-color: var(--primary);
+
+    background: #eef2ff;
+
+    transform: scale(1.01);
+}
