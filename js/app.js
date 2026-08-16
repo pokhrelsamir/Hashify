@@ -127,6 +127,9 @@ clearBtn.addEventListener("click", () => {
 const fileInput =
     document.getElementById("fileInput");
 
+const fileDropArea =
+document.querySelector(".file-upload label");
+
 const fileInfo =
     document.getElementById("fileInfo");
 
@@ -234,6 +237,79 @@ fileHashBtn.addEventListener(
                 "Generate File Hash";
 
         }
+
+    }
+);
+
+/* ========================================
+   Drag & Drop
+======================================== */
+
+fileDropArea.addEventListener(
+    "dragover",
+    (event) => {
+
+        event.preventDefault();
+
+        fileDropArea.classList.add(
+            "drag-active"
+        );
+
+    }
+);
+
+
+fileDropArea.addEventListener(
+    "dragleave",
+    () => {
+
+        fileDropArea.classList.remove(
+            "drag-active"
+        );
+
+    }
+);
+
+
+fileDropArea.addEventListener(
+    "drop",
+    (event) => {
+
+        event.preventDefault();
+
+        fileDropArea.classList.remove(
+            "drag-active"
+        );
+
+
+        const file =
+            event.dataTransfer.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        selectedFile = file;
+
+
+        fileName.textContent =
+            file.name;
+
+        fileSize.textContent =
+            formatFileSize(file.size);
+
+
+        fileInfo.classList.remove(
+            "hidden"
+        );
+
+        fileResult.classList.add(
+            "hidden"
+        );
+
+        fileHashBtn.disabled = false;
 
     }
 );
