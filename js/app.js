@@ -410,3 +410,84 @@ compareBtn.addEventListener(
 
     }
 );
+
+/* ========================================
+   Copy Hash
+======================================== */
+
+document.addEventListener(
+    "click",
+    async (event) => {
+
+        const button =
+            event.target.closest(".copy-btn");
+
+
+        if (!button) {
+            return;
+        }
+
+
+        const targetId =
+            button.dataset.target;
+
+
+        const target =
+            document.getElementById(targetId);
+
+
+        if (!target) {
+            return;
+        }
+
+
+        const value =
+            target.textContent.trim();
+
+
+        if (!value || value === "—") {
+            return;
+        }
+
+
+        try {
+
+            await navigator.clipboard.writeText(
+                value
+            );
+
+
+            const originalText =
+                button.textContent;
+
+
+            button.textContent =
+                "Copied!";
+
+
+            setTimeout(
+                () => {
+
+                    button.textContent =
+                        originalText;
+
+                },
+                1200
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Copy failed:",
+                error
+            );
+
+            alert(
+                "Unable to copy hash."
+            );
+
+        }
+
+    }
+);
