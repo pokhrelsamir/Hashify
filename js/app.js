@@ -11,6 +11,9 @@ const characterCount =
     document.getElementById("characterCount");
 
 
+const md5Result =
+    document.getElementById("md5Result");
+
 const sha1Result =
     document.getElementById("sha1Result");
 
@@ -61,9 +64,28 @@ generateBtn.addEventListener("click", async () => {
 
     try {
 
+        /*
+         * Generate SHA hashes
+         */
+
         const hashes =
             await generateAllHashes(text);
 
+
+        /*
+         * Generate MD5
+         */
+
+        const md5Hash =
+            md5(text);
+
+
+        /*
+         * Display hashes
+         */
+
+        md5Result.textContent =
+            md5Hash;
 
         sha1Result.textContent =
             hashes.sha1;
@@ -107,18 +129,26 @@ clearBtn.addEventListener("click", () => {
 
     textInput.value = "";
 
-    sha1Result.textContent = "—";
+    md5Result.textContent =
+        "—";
 
-    sha256Result.textContent = "—";
+    sha1Result.textContent =
+        "—";
 
-    sha384Result.textContent = "—";
+    sha256Result.textContent =
+        "—";
 
-    sha512Result.textContent = "—";
+    sha384Result.textContent =
+        "—";
+
+    sha512Result.textContent =
+        "—";
 
     characterCount.textContent =
         "0 characters";
 
 });
+
 
 /* ========================================
    File Hashing
@@ -128,7 +158,7 @@ const fileInput =
     document.getElementById("fileInput");
 
 const fileDropArea =
-document.querySelector(".file-upload label");
+    document.querySelector(".file-upload label");
 
 const fileInfo =
     document.getElementById("fileInfo");
@@ -241,6 +271,7 @@ fileHashBtn.addEventListener(
     }
 );
 
+
 /* ========================================
    Drag & Drop
 ======================================== */
@@ -313,6 +344,7 @@ fileDropArea.addEventListener(
 
     }
 );
+
 
 /* ========================================
    Hash Comparison
@@ -410,6 +442,7 @@ compareBtn.addEventListener(
 
     }
 );
+
 
 /* ========================================
    Copy Hash
