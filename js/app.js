@@ -1,3 +1,13 @@
+/**
+ * Hashify
+ * Main Application Logic
+ */
+
+
+/* ========================================
+   Text Hashing Elements
+======================================== */
+
 const textInput =
     document.getElementById("textInput");
 
@@ -27,7 +37,9 @@ const sha512Result =
     document.getElementById("sha512Result");
 
 
-/* Character Counter */
+/* ========================================
+   Character Counter
+======================================== */
 
 textInput.addEventListener("input", () => {
 
@@ -40,7 +52,9 @@ textInput.addEventListener("input", () => {
 });
 
 
-/* Generate Hashes */
+/* ========================================
+   Generate Hashes
+======================================== */
 
 generateBtn.addEventListener("click", async () => {
 
@@ -51,6 +65,8 @@ generateBtn.addEventListener("click", async () => {
     if (text.length === 0) {
 
         alert("Please enter some text.");
+
+        textInput.focus();
 
         return;
     }
@@ -64,28 +80,25 @@ generateBtn.addEventListener("click", async () => {
 
     try {
 
-        /*
-         * Generate SHA hashes
-         */
+        /* Generate SHA hashes */
 
         const hashes =
             await generateAllHashes(text);
 
 
-        /*
-         * Generate MD5
-         */
+        /* Generate MD5 */
 
         const md5Hash =
             md5(text);
 
 
-        /*
-         * Display hashes
-         */
+        /* Display MD5 */
 
         md5Result.textContent =
             md5Hash;
+
+
+        /* Display SHA hashes */
 
         sha1Result.textContent =
             hashes.sha1;
@@ -123,11 +136,14 @@ generateBtn.addEventListener("click", async () => {
 });
 
 
-/* Clear */
+/* ========================================
+   Clear Text Hashes
+======================================== */
 
 clearBtn.addEventListener("click", () => {
 
     textInput.value = "";
+
 
     md5Result.textContent =
         "—";
@@ -144,8 +160,12 @@ clearBtn.addEventListener("click", () => {
     sha512Result.textContent =
         "—";
 
+
     characterCount.textContent =
         "0 characters";
+
+
+    textInput.focus();
 
 });
 
@@ -182,7 +202,9 @@ const fileHash =
 let selectedFile = null;
 
 
-/* File Selected */
+/* ========================================
+   File Selected
+======================================== */
 
 fileInput.addEventListener("change", () => {
 
@@ -205,16 +227,22 @@ fileInput.addEventListener("change", () => {
         formatFileSize(file.size);
 
 
-    fileInfo.classList.remove("hidden");
+    fileInfo.classList.remove(
+        "hidden"
+    );
 
-    fileResult.classList.add("hidden");
+    fileResult.classList.add(
+        "hidden"
+    );
 
     fileHashBtn.disabled = false;
 
 });
 
 
-/* Generate File Hash */
+/* ========================================
+   Generate File Hash
+======================================== */
 
 fileHashBtn.addEventListener(
     "click",
@@ -363,7 +391,9 @@ const comparisonResult =
     document.getElementById("comparisonResult");
 
 
-/* Compare Hashes */
+/* ========================================
+   Compare Hashes
+======================================== */
 
 compareBtn.addEventListener(
     "click",
